@@ -1,0 +1,28 @@
+services:
+  postgres:
+    image: postgres
+    ports:
+      - "5422:5432"
+    volumes:
+      - ./initialize.sql:/docker-entrypoint-initdb.d/initialize.sql
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_pw
+      POSTGRES_DB: indigov-takehome-db
+
+  node_server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5055:5055"
+    environment:
+      PORT: 5055
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres_pw
+      POSTGRES_DB: indigov-takehome-db
+      POSTGRES_PORT: 5422
+      POSTGRES_HOST: host.docker.internal
+
+    depends_on:
+      - postgres
