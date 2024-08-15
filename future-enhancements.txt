@@ -1,0 +1,29 @@
+1. Better validation of emails/addresses upon time of submission, reject calls with invalid data
+2. More helpful validation error msgs that can link to frontend fields
+3. Instead of exporting CSV to local dir, email to an email specified in url param
+4. Persist all imported csv records in a single transaction
+5. Add a functional frontend
+6. Load env vars from a secret manager
+7. Handling scale:
+    i. Postgres still an ok choice, but should use a distributed setup, at least 1 main instance w/ 3+ read instances,
+    or a geographically-distributed option like Aurora / CockroachDB.
+    ii. Load balanced, multi-node service with horizontal scaling
+
+8. Alter GET endpoints to prevent returning all constituents at once, paginate
+9. Utilize api key authentication
+10. Add more contextual/detailed information to constituents table
+    i. Reason for submission
+    ii. Business Owner/ Profession/ etc.
+    iii. Age/Ethnicity/Gender
+    iv. Allow staff to mark constituents with a priority level
+11. CSV service should probably be separated from core service
+12. Add logging and error alerting
+13. Add testing
+14. Separate frontend server / CDN from backend server
+15. Lambda / worker process should kick off for heavy CSV exports / imports
+16. Protection against large files taking down nodes due to OOM errors
+17. Encrypt data at rest in PG database
+18. Decouple emails from address
+19. Duplicate data to Elasticsearch for more efficient searching filtering, etc.
+20. Caching data where possible in Redis
+21. Add swagger api doc
